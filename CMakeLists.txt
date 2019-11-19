@@ -441,7 +441,7 @@ add_custom_target(
 add_library(${LIB_GUI_PROJECT_NAME} ${LIB_GUI_FILES} ${CMAKE_BINARY_DIR}/src/lib_gui/productVersion.h)
 
 if(UNIX)
-	target_link_libraries(${LIB_GUI_PROJECT_NAME} ${LIB_UTILITY_PROJECT_NAME} Qt5::Widgets Qt5::Network Qt5::Svg)
+	target_link_libraries(${LIB_GUI_PROJECT_NAME} ${LIB_UTILITY_PROJECT_NAME} ${LIB_PROJECT_NAME} Qt5::Widgets Qt5::Network Qt5::Svg)
 else()
 	target_link_libraries(${LIB_GUI_PROJECT_NAME} ${LIB_UTILITY_PROJECT_NAME} Qt5::Widgets Qt5::Network Qt5::Svg Qt5::WinExtras)
 endif()
