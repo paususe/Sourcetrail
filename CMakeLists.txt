@@ -486,6 +486,10 @@ configure_file(
 	"${PROJECT_BINARY_DIR}/src/lib_gui/includes.h"
 )
 
+set(VERSION_YEAR 2019)
+set(VERSION_MINOR 1)
+set(VERSION_COMMIT 1)
+
 #configure the versioning file
 configure_file(
 	${CMAKE_SOURCE_DIR}/cmake/productVersion.h.in
@@ -618,6 +622,9 @@ create_source_groups(${APP_FILES})
 target_link_libraries(
 	${APP_PROJECT_NAME}
 	${LIB_PROJECT_NAME}
+        ${CMAKE_THREAD_LIBS_INIT}
+        ${DL_LIB}
+        ${RT_LIB}
 	${LIB_GUI_PROJECT_NAME}
 	$<$<BOOL:${BUILD_CXX_LANGUAGE_PACKAGE}>:${LIB_CXX_PROJECT_NAME}>
 	$<$<BOOL:${BUILD_JAVA_LANGUAGE_PACKAGE}>:${LIB_JAVA_PROJECT_NAME}>
