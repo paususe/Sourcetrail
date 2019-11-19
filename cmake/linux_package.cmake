@@ -1,6 +1,11 @@
+find_package(Qt5 COMPONENTS Core REQUIRED)
+get_target_property(QtCore_location Qt5::Core LOCATION)
+get_filename_component(QtBaseDirectory ${QtCore_location} DIRECTORY)
+message("QtCore_location = ${QtCore_location}")
+message("QtBaseDirectory = ${QtBaseDirectory}")
 
 function(InstallQtModule module qtversion)
-	get_filename_component(realpath $ENV{QT_DIR}/lib/libQt5${module}.so.${qtversion} REALPATH)
+	get_filename_component(realpath ${QtBaseDirectory}/libQt5${module}.so.${qtversion} REALPATH)
 	INSTALL(FILES
 		${realpath}
 		DESTINATION Sourcetrail/lib
@@ -96,10 +101,10 @@ function(AddSharedToComponent)
 	GetAndInstallLibrary(libssl.so 1)
 	GetAndInstallLibrary(libcrypto.so 1)
 
-	INSTALL(DIRECTORY
-		$ENV{QT_DIR}/plugins/platforms
-		DESTINATION Sourcetrail/lib
-	)
+#	INSTALL(DIRECTORY
+#		${QtBaseDirectory}/plugins/platforms
+#		DESTINATION Sourcetrail/lib
+#	)
 
 	INSTALL(DIRECTORY ${CMAKE_SOURCE_DIR}/bin/app/user
 		DESTINATION Sourcetrail
